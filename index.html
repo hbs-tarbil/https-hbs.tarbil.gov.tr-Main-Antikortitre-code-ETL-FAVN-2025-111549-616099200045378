@@ -2,16 +2,70 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <title>Rabies Antibody Titer Test Verification</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Document Viewer</title>
-  <link rel="stylesheet" href="assets/style.css">
   <style>
-    html, body { height: 100%; margin: 0; }
-    iframe { width: 100%; height: 100vh; border: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .form-container {
+      background-color: #2b7a78;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .form-container h2 {
+      margin: 0 0 10px 0;
+    }
+    .form-group {
+      margin: 10px 0;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input {
+      padding: 8px;
+      width: 250px;
+      max-width: 90%;
+    }
+    button {
+      padding: 8px 16px;
+      margin-top: 10px;
+      background-color: #17252a;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #3aafa9;
+    }
+    .pdf-viewer {
+      width: 100%;
+      height: 90vh;
+      border: none;
+    }
   </style>
 </head>
 <body>
-  <iframe src="assets/document.pdf" title="PDF Viewer"></iframe>
-  <script src="assets/java.js"></script>
+
+  <div class="form-container">
+    <h2>Rabies Antibody Titer Test Result Verification</h2>
+    <div class="form-group">
+      <label for="protocol">Protocol Number</label>
+      <input type="text" id="protocol" value="ETL/FAVN/2025/111549">
+    </div>
+    <div class="form-group">
+      <label for="chip">Chip Number</label>
+      <input type="text" id="chip" value="616099200045378">
+    </div>
+    <button onclick="alert('Search function not connected')">Search</button>
+  </div>
+
+  <!-- Embedded PDF -->
+  <iframe class="pdf-viewer" src="document.pdf"></iframe>
+
 </body>
 </html>
