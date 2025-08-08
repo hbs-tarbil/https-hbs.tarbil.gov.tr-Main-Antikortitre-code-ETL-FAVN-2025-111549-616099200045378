@@ -1,180 +1,74 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
-  <title>Rabies Antibody Titer Test Result Verification</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    :root{
-      --teal:#2a7b80;    /* header bar color */
-      --teal-dark:#1f5b5f;
-      --bg:#f2f2f2;
-      --text:#222;
-      --muted:#666;
-      --shadow:0 2px 10px rgba(0,0,0,.12);
-      --radius:2px;
-    }
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: Arial, Helvetica, sans-serif;
-      background:var(--bg);
-      color:var(--text);
-    }
-
-    /* top panel */
-    .card{
-      max-width: 860px;
-      margin: 40px auto 18px auto;
-      background:#fff;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
-    }
-    .card .header{
-      background:var(--teal);
-      color:#fff;
-      padding:18px 24px;
-      text-align:center;
-      line-height:1.35;
-    }
-    .header h1, .header h2{
-      margin:0;
-      font-weight:700;
-    }
-    .header h1{font-size:20px}
-    .header h2{font-size:18px; margin-top:6px}
-
-    /* left logo circle like the site */
-    .badge{
-      position:absolute;
-      left: -12px;
-      top: -12px;
-      width:64px;
-      height:64px;
-      border-radius:50%;
-      background:#fff;
-      box-shadow: var(--shadow);
-      display:grid;
-      place-items:center;
-      overflow:hidden;
-    }
-    .badge img{ width:58px; height:58px; object-fit:contain; }
-
-    .card .body{
-      padding:24px 28px 18px 28px;
-    }
-
-    .form-grid{
-      display:grid;
-      grid-template-columns: 220px 1fr;
-      gap:14px 16px;
-      align-items:center;
-      max-width:620px;
-    }
-    label{
-      font-weight:700;
-      color:#222;
-    }
-    .hint{color:var(--muted); font-size:12px}
-    input[type="text"]{
-      width:100%;
-      padding:10px 12px;
-      border:1px solid #cfcfcf;
-      border-radius:4px;
-      font-size:14px;
-      outline:none;
-    }
-    input[type="text"]:focus{
-      border-color:#7fb8bc;
-      box-shadow:0 0 0 2px rgba(127,184,188,.25);
-    }
-
-    .actions{
-      display:flex;
-      justify-content:flex-end;
-      margin-top:18px;
-    }
-    .btn{
-      background:var(--teal-dark);
-      color:#fff;
-      border:0;
-      padding:9px 16px;
-      border-radius:4px;
-      cursor:pointer;
-      font-weight:600;
-    }
-    .btn:hover{ background:#1a4b4e }
-
-    /* embedded PDF */
-    .pdf-wrap{
-      max-width: 860px;
-      margin: 0 auto 34px auto;
-      box-shadow: var(--shadow);
-      border-radius: var(--radius);
-      overflow:hidden;
-      background:#fff;
-    }
-    .pdf-frame{
-      display:block;
-      width:100%;
-      height:78vh;       /* like the site — tall viewer */
-      border:0;
-    }
-
-    @media (max-width:680px){
-      .form-grid{ grid-template-columns: 1fr; }
-      .actions{ justify-content:center; }
-    }
-  </style>
+  <title>Kuduz Antikor Titre Testi Sonuç Raporu Doğrulama</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
-
-  <!-- top search panel -->
-  <div class="card">
-    <div class="badge">
-      <!-- optional small logo (replace images/logo.png or remove the <img>) -->
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Emblem_of_Turkey.svg" alt="">
-    </div>
-
-    <div class="header">
+  <!-- Top banner card (looks like the original layout) -->
+  <header class="hero">
+    <div class="hero__inner">
       <h1>Kuduz Antikor Titre Testi Sonuç Raporu Doğrulama</h1>
       <h2>Rabies Antibody Titer Test Result Verification</h2>
     </div>
+  </header>
 
-    <div class="body">
-      <div class="form-grid">
-        <label for="protocol">Protokol Numarası / Protocol number :</label>
-        <input id="protocol" type="text" value="ETL/FAVN/2025/111549" />
-
-        <label for="chip">Çip No / Chip number :</label>
-        <input id="chip" type="text" value="616099200045378" />
+  <!-- Form card -->
+  <main class="card">
+    <form id="verifyForm" class="form">
+      <div class="form__row">
+        <label for="protocol" class="form__label">
+          Protokol Numarası ( Protocol number ):
+        </label>
+        <input
+          id="protocol"
+          name="protocol"
+          class="form__input"
+          type="text"
+          value="ETL/FAVN/2025/111549"
+          autocomplete="off"
+          spellcheck="false"
+        />
       </div>
 
-      <div class="actions">
-        <button class="btn" id="btnSearch" title="Search | Sorgula">Search | Sorgula</button>
+      <div class="form__row">
+        <label for="chip" class="form__label">
+          Çip No ( Chip number ):
+        </label>
+        <input
+          id="chip"
+          name="chip"
+          class="form__input"
+          type="text"
+          value="616099200045378"
+          autocomplete="off"
+          spellcheck="false"
+        />
       </div>
-    </div>
-  </div>
 
-  <!-- PDF viewer (must point to your PDF file) -->
-  <!-- If your PDF is elsewhere, change src below. Example: src="assets/document.pdf" -->
-  <div class="pdf-wrap">
-    <iframe class="pdf-frame" src="document.pdf" title="Report PDF"></iframe>
-  </div>
+      <div class="form__actions">
+        <button type="submit" class="btn">Search | Sorgula</button>
+      </div>
+    </form>
+  </main>
 
-  <script>
-    // optional: when clicking "Search", open the official page with the entered values
-    // If you don't want this behavior, delete the JS block.
-    document.getElementById('btnSearch').addEventListener('click', function () {
-      const prot = encodeURIComponent(document.getElementById('protocol').value.trim());
-      const chip = encodeURIComponent(document.getElementById('chip').value.trim());
+  <!-- PDF viewer area -->
+  <section class="viewer">
+    <!--
+      IMPORTANT:
+      Put your PDF at: assets/document.pdf
+      If your file has a different name, update the SRC in app.js
+    -->
+    <iframe
+      id="pdfViewer"
+      title="ENS_SampleRabiesReport_Verify"
+      src="about:blank"
+      loading="lazy"
+    ></iframe>
+  </section>
 
-      // Build the official query URL (for demo only – no replacement of real data)
-      const url = `https://hbs.tarbil.gov.tr/Main/Antikortitre?code=${prot}-${chip}`;
-      window.open(url, '_blank');
-    });
-  </script>
+  <script src="assets/js/app.js"></script>
 </body>
 </html>
