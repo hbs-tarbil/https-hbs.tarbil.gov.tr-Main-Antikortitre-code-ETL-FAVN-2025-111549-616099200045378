@@ -3,121 +3,136 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rabies Antibody Titer Test Result Report Verification</title>
+  <title>Rabies Antibody Titer Test Report Verification</title>
   <style>
-    :root{
-      --bg: #0f172a;           /* slate-900 */
-      --card: #ffffff;
-      --primary: #2f6f7b;      /* teal-ish */
-      --primary-700:#24555e;
-      --muted: #6b7280;        /* gray-500 */
-      --radius: 18px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-      background: radial-gradient(1200px 800px at 10% -10%, #1e293b 0, transparent 60%),
-                  radial-gradient(1000px 700px at 110% 10%, #0e7490 0, transparent 50%),
-                  var(--bg);
-      color:#111827; display:grid; place-items:center; padding:24px;
-    }
-    .frame{
-      width:min(880px, 95vw); background:var(--card); border-radius:var(--radius);
-      box-shadow: 0 20px 70px rgba(0,0,0,.25);
-      overflow:hidden; border:1px solid #e5e7eb;
-    }
-    .header{
-      background:linear-gradient(180deg, var(--primary) 0%, var(--primary-700) 100%);
-      color:#e5f2f5; padding:28px 24px; text-align:center;
-    }
-    .header h1{margin:0 0 6px; font-size:1.25rem; font-weight:800}
-    .header h2{margin:0; font-size:1rem; font-weight:700}
-    .body{padding:28px 22px 30px}
-    .field{margin:14px 0 18px}
-    label{display:block; font-weight:700; margin-bottom:8px}
-    .hint{display:block; font-size:.875rem; color:var(--muted); font-weight:600}
-    input{
-      width:100%; padding:14px 16px; font-size:1rem; border:1.5px solid #e5e7eb; border-radius:12px;
-      outline:none; transition:border .2s, box-shadow .2s;
-    }
-    input:focus{border-color:#0ea5b7; box-shadow:0 0 0 4px rgba(14,165,183,.15)}
-    .row{display:grid; grid-template-columns: 1fr 180px; gap:16px; align-items:end; margin-top:12px}
-    .btn{appearance:none; border:0; background:#2563eb; color:#fff; font-weight:800; letter-spacing:.2px;
-      padding:14px 18px; border-radius:12px; cursor:pointer; box-shadow:0 8px 22px rgba(37,99,235,.25);}
-    .btn:active{transform:translateY(1px)}
-    .footer{padding:18px 22px; font-size:.85rem; color:var(--muted)}
-    .badge{display:inline-block; background:#f1f5f9; border:1px solid #e2e8f0; color:#0f172a; padding:4px 10px; border-radius:999px; font-weight:700; font-size:.75rem}
+    :root { --brand:#2b6d7f; --bg:#f7fafc; --card:#ffffff; --accent:#0ea5a6; --muted:#6b7280; }
+    * { box-sizing: border-box; }
+    body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; margin:0; color:#0f172a; background: var(--bg); }
+    header { background: var(--brand); color:#fff; padding: 28px 16px; text-align: center; }
+    header h1 { margin: 0 0 6px 0; font-size: clamp(1.2rem, 3vw, 1.6rem); letter-spacing:.2px; }
+    header p { margin: 0; opacity:.9; font-size: .95rem; }
+
+    .container { max-width: 980px; margin: 24px auto; padding: 0 16px; }
+    .card { background: var(--card); border-radius: 18px; padding: 22px; box-shadow: 0 10px 30px rgba(2, 6, 23, 0.06); }
+
+    .row { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    @media (min-width: 720px) { .row { grid-template-columns: 1fr 1fr; } }
+
+    label { display:block; font-weight: 600; margin-bottom: 6px; }
+    input[type="text"] { width:100%; padding:12px 14px; border:1px solid #e5e7eb; border-radius: 12px; font-size: 16px; outline: none; }
+    input[type="text"]:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(14,165,166,.18); }
+
+    .actions { display:flex; gap:10px; align-items:center; flex-wrap: wrap; margin-top: 12px; }
+    button { background: var(--accent); color:#fff; border:0; padding:12px 18px; border-radius: 12px; font-weight: 700; cursor:pointer; }
+    button:disabled { opacity:.6; cursor: not-allowed; }
+
+    .hint { color: var(--muted); font-size: .92rem; margin: 6px 0 0 0; }
+
+    .status { margin-top: 12px; font-size: .95rem; color:#111827; }
+
+    .viewer { margin-top: 16px; height: 640px; border:1px solid #e5e7eb; border-radius: 14px; overflow: hidden; background: #00000008; }
+    iframe, object, embed { width:100%; height:100%; border:0; }
+
+    footer { text-align:center; color: var(--muted); font-size: .85rem; margin: 22px 0; }
+    .brand { font-weight: 700; color:#fff; }
   </style>
 </head>
 <body>
-  <main class="frame" role="main">
-    <div class="header">
-      <h1>Kuduz Antikor Titre Testi Sonuç Raporu Doğrulama</h1>
-      <h2>Rabies Antibody Titer Test Result Report Verification</h2>
-    </div>
+  <header>
+    <h1>Kuduz Antikor Titre Testi Sonuç Raporu Doğrulama</h1>
+    <p>Rabies Antibody Titer Test Result Report Verification</p>
+  </header>
 
-    <form class="body" id="verifyForm" autocomplete="on" novalidate>
-      <div class="field">
-        <label for="protocol">Protokol Numarası <span class="hint">(Protocol number)</span></label>
-        <input id="protocol" name="protocol" placeholder="ETL/FAVN/2025/111549"
-               inputmode="latin" pattern="[A-Za-z]{3}\/[A-Za-z]{4}\/[0-9]{4}\/[0-9]{5}" required />
-      </div>
-
-      <div class="row">
-        <div class="field" style="margin:0">
-          <label for="chip">Çip No <span class="hint">(Chip number)</span></label>
-          <input id="chip" name="chip" placeholder="610699200045378" inputmode="numeric" pattern="[0-9]{12,16}" required />
+  <main class="container">
+    <div class="card">
+      <form id="searchForm" autocomplete="off">
+        <div class="row">
+          <div>
+            <label for="protocol">Protocol Number</label>
+            <input id="protocol" name="protocol" type="text" placeholder="e.g. ETL/FAVN/2025/111549" required />
+          </div>
+          <div>
+            <label for="chip">Chip Number</label>
+            <input id="chip" name="chip" type="text" placeholder="e.g. 616099200045378" required />
+          </div>
         </div>
-        <button class="btn" type="submit" id="searchBtn">Search | Sorgula</button>
-      </div>
-    </form>
+        <div class="actions">
+          <button id="searchBtn" type="submit">Search | Sorgula</button>
+          <label style="display:flex; align-items:center; gap:8px;">
+            <input type="checkbox" id="usePdfjs" /> Use PDF.js viewer
+          </label>
+        </div>
+        <p class="hint">Tip: Put your PDF inside this GitHub Pages repo (e.g., <code>/pdfs/report.pdf</code>) and reference it with a <strong>relative path</strong> for best compatibility.</p>
+      </form>
 
-    <div class="footer">
-      <span class="badge">Demo</span>
-      <span style="margin-left:8px">This is a static demo page. Hook the form to your backend or an API as needed.</span>
+      <div id="status" class="status" role="status" aria-live="polite"></div>
+      <div id="viewer" class="viewer" hidden></div>
     </div>
-    <!-- PDF Preview (Method 1: native iframe) -->
-    <section class="body" aria-label="PDF preview" style="padding-top:0">
-      <h3 style="margin:0 0 10px; font-size:1rem; color:#0f172a">Report Preview (PDF)</h3>
-      <p class="hint" style="margin:4px 0 14px">ضع ملف PDF داخل نفس المجلد وسمّه <strong>ENS_SampleRabiesReport.pdf</strong> أو غيّر المسار أدناه.</p>
-      <div class="pdf-wrap">
-        <iframe id="pdfFrame" title="PDF Viewer" src="ENS_SampleRabiesReport.pdf#toolbar=1&navpanes=0&scrollbar=1&zoom=100" loading="lazy" allow="fullscreen" referrerpolicy="no-referrer" ></iframe>
-      </div>
-      <noscript><p>يتطلب العرض المضمّن للـ PDF تمكين JavaScript. يمكنك أيضًا <a href="ENS_SampleRabiesReport.pdf" target="_blank" rel="noopener">فتح الملف في نافذة جديدة</a>.</p></noscript>
-    </section>
 
+    <footer>
+      Built for GitHub Pages · Replace the mapping below with your own report entries
+    </footer>
   </main>
 
-  <style>
-    .pdf-wrap{
-      width:100%; height:72vh; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden;
-      box-shadow: inset 0 0 0 1px #f1f5f9;
-    }
-    .pdf-wrap iframe{
-      width:100%; height:100%; border:0; background:#111827;
-    }
-  </style>
+  <!-- Simple in-page "database": key is "PROTOCOL|CHIP", value is the PDF URL (relative or absolute) -->
+  <script id="db" type="application/json">
+  {
+    "ETL/FAVN/2025/111549|616099200045378": "pdfs/sample.pdf"
+  }
+  </script>
 
   <script>
-    const form = document.getElementById('verifyForm');
-    form.addEventListener('submit', (e) => {
+  (function(){
+    const form    = document.getElementById('searchForm');
+    const status  = document.getElementById('status');
+    const viewer  = document.getElementById('viewer');
+    const usePdfjs= document.getElementById('usePdfjs');
+    const db      = JSON.parse(document.getElementById('db').textContent.trim());
+
+    // Prefill inputs from URL parameters (?protocol=...&chip=...&pdfjs=1)
+    const params = new URL(location.href).searchParams;
+    if (params.has('protocol')) document.getElementById('protocol').value = params.get('protocol');
+    if (params.has('chip'))     document.getElementById('chip').value     = params.get('chip');
+    if (params.has('pdfjs'))    usePdfjs.checked = params.get('pdfjs') === '1';
+
+    form.addEventListener('submit', function(e){
       e.preventDefault();
-      if (!form.checkValidity()) {
-        form.reportValidity();
+      const protocol = form.protocol.value.trim();
+      const chip     = form.chip.value.trim();
+      const key      = `${protocol}|${chip}`;
+      const pdfUrl   = db[key];
+
+      if (!pdfUrl) {
+        status.textContent = 'No matching report found. Please check the numbers and try again.';
+        viewer.hidden = true; viewer.innerHTML = '';
         return;
       }
-      const protocol = document.getElementById('protocol').value.trim();
-      const chip = document.getElementById('chip').value.trim();
 
-      // In a real app, do fetch(...) to your API. Here we just show a result window.
-      const params = new URLSearchParams({ protocol, chip });
-      const result = `Searching for:\n\nProtocol: ${protocol}\nChip: ${chip}\n\n(Replace this with a real request to your server/API)`;
-      alert(result);
+      status.textContent = 'Loading report…';
+      viewer.hidden = false; viewer.innerHTML = '';
 
-      // Example: navigate to a results page
-      // window.location.href = `results.html?${params.toString()}`;
+      if (usePdfjs.checked) {
+        // Use the hosted PDF.js viewer. Works best when the PDF allows cross-origin access.
+        const encoded = encodeURIComponent(pdfUrl);
+        const src = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encoded}#zoom=page-width`;
+        const iframe = document.createElement('iframe');
+        iframe.title = 'PDF.js viewer';
+        iframe.src = src;
+        iframe.loading = 'lazy';
+        iframe.referrerPolicy = 'no-referrer';
+        viewer.appendChild(iframe);
+      } else {
+        // Native browser PDF preview (or built-in PDF plugin)
+        const iframe = document.createElement('iframe');
+        iframe.title = 'PDF preview';
+        iframe.src = pdfUrl; // relative URL recommended (same-origin)
+        iframe.loading = 'lazy';
+        viewer.appendChild(iframe);
+      }
+
+      status.textContent = 'Report loaded.';
     });
+  })();
   </script>
 </body>
 </html>
