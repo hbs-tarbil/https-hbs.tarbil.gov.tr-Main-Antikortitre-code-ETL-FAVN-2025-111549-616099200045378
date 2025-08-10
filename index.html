@@ -1,68 +1,103 @@
-<!DOCTYPE html>
-<html lang="tr">
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kuduz Antikor Titre Testi Sonuç Raporu Doğrulama</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <script defer src="assets/js/java.js"></script>
+  <title>Rabies Antibody Titer Test Result Report Verification</title>
+  <style>
+    :root{
+      --bg: #0f172a;           /* slate-900 */
+      --card: #ffffff;
+      --primary: #2f6f7b;      /* teal-ish */
+      --primary-700:#24555e;
+      --muted: #6b7280;        /* gray-500 */
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 10% -10%, #1e293b 0, transparent 60%),
+                  radial-gradient(1000px 700px at 110% 10%, #0e7490 0, transparent 50%),
+                  var(--bg);
+      color:#111827; display:grid; place-items:center; padding:24px;
+    }
+    .frame{
+      width:min(880px, 95vw); background:var(--card); border-radius:var(--radius);
+      box-shadow: 0 20px 70px rgba(0,0,0,.25);
+      overflow:hidden; border:1px solid #e5e7eb;
+    }
+    .header{
+      background:linear-gradient(180deg, var(--primary) 0%, var(--primary-700) 100%);
+      color:#e5f2f5; padding:28px 24px; text-align:center;
+    }
+    .header h1{margin:0 0 6px; font-size:1.25rem; font-weight:800}
+    .header h2{margin:0; font-size:1rem; font-weight:700}
+    .body{padding:28px 22px 30px}
+    .field{margin:14px 0 18px}
+    label{display:block; font-weight:700; margin-bottom:8px}
+    .hint{display:block; font-size:.875rem; color:var(--muted); font-weight:600}
+    input{
+      width:100%; padding:14px 16px; font-size:1rem; border:1.5px solid #e5e7eb; border-radius:12px;
+      outline:none; transition:border .2s, box-shadow .2s;
+    }
+    input:focus{border-color:#0ea5b7; box-shadow:0 0 0 4px rgba(14,165,183,.15)}
+    .row{display:grid; grid-template-columns: 1fr 180px; gap:16px; align-items:end; margin-top:12px}
+    .btn{appearance:none; border:0; background:#2563eb; color:#fff; font-weight:800; letter-spacing:.2px;
+      padding:14px 18px; border-radius:12px; cursor:pointer; box-shadow:0 8px 22px rgba(37,99,235,.25);}
+    .btn:active{transform:translateY(1px)}
+    .footer{padding:18px 22px; font-size:.85rem; color:var(--muted)}
+    .badge{display:inline-block; background:#f1f5f9; border:1px solid #e2e8f0; color:#0f172a; padding:4px 10px; border-radius:999px; font-weight:700; font-size:.75rem}
+  </style>
 </head>
 <body>
-  <!-- Fixed logo (top-left) -->
-  <img src="assets/img/logo.png" alt="Logo" class="hero__logo" />
-
-  <!-- Top banner -->
-  <header class="hero">
-    <div class="hero__inner">
+  <main class="frame" role="main">
+    <div class="header">
       <h1>Kuduz Antikor Titre Testi Sonuç Raporu Doğrulama</h1>
-      <h2>Rabies Antibody Titer Test Result Verification</h2>
+      <h2>Rabies Antibody Titer Test Result Report Verification</h2>
     </div>
-  </header>
 
-  <!-- Form card -->
-  <main class="card">
-    <form id="verifyForm" class="form">
-      <div class="form__row">
-        <label for="protocol" class="form__label">Protokol Numarası ( Protocol number ):</label>
-        <input
-          id="protocol"
-          name="protocol"
-          class="form__input"
-          type="text"
-          value="ETL/FAVN/2025/111549"
-          autocomplete="off"
-          spellcheck="false"
-        />
+    <form class="body" id="verifyForm" autocomplete="on" novalidate>
+      <div class="field">
+        <label for="protocol">Protokol Numarası <span class="hint">(Protocol number)</span></label>
+        <input id="protocol" name="protocol" placeholder="ETL/FAVN/2025/111549"
+               inputmode="latin" pattern="[A-Za-z]{3}\/[A-Za-z]{4}\/[0-9]{4}\/[0-9]{5}" required />
       </div>
 
-      <div class="form__row">
-        <label for="chip" class="form__label">Çip No ( Chip number ):</label>
-        <input
-          id="chip"
-          name="chip"
-          class="form__input"
-          type="text"
-          value="616099200045378"
-          autocomplete="off"
-          spellcheck="false"
-        />
-      </div>
-
-      <div class="form__actions">
-        <button type="submit" class="btn">Search | Sorgula</button>
+      <div class="row">
+        <div class="field" style="margin:0">
+          <label for="chip">Çip No <span class="hint">(Chip number)</span></label>
+          <input id="chip" name="chip" placeholder="610699200045378" inputmode="numeric" pattern="[0-9]{12,16}" required />
+        </div>
+        <button class="btn" type="submit" id="searchBtn">Search | Sorgula</button>
       </div>
     </form>
+
+    <div class="footer">
+      <span class="badge">Demo</span>
+      <span style="margin-left:8px">This is a static demo page. Hook the form to your backend or an API as needed.</span>
+    </div>
   </main>
 
-  <!-- PDF viewer -->
-  <section class="viewer">
-    <!-- The src is set by JS -->
-    <iframe
-      id="pdfViewer"
-      title="ENS_SampleRabiesReport_Verify"
-      src="about:blank"
-      loading="lazy"
-    ></iframe>
-  </section>
+  <script>
+    const form = document.getElementById('verifyForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      const protocol = document.getElementById('protocol').value.trim();
+      const chip = document.getElementById('chip').value.trim();
+
+      // In a real app, do fetch(...) to your API. Here we just show a result window.
+      const params = new URLSearchParams({ protocol, chip });
+      const result = `Searching for:\n\nProtocol: ${protocol}\nChip: ${chip}\n\n(Replace this with a real request to your server/API)`;
+      alert(result);
+
+      // Example: navigate to a results page
+      // window.location.href = `results.html?${params.toString()}`;
+    });
+  </script>
 </body>
 </html>
