@@ -5,9 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kuduz Antikor Titre Testi Sonuç Raporu Doğrulama</title>
   <link rel="stylesheet" href="assets/css/style.css" />
+  <script defer src="assets/js/java.js"></script>
 </head>
 <body>
-  <!-- Top banner card (looks like the original layout) -->
+  <!-- Fixed logo (top-left) -->
+  <img src="assets/img/logo.png" alt="Logo" class="hero__logo" />
+
+  <!-- Top banner -->
   <header class="hero">
     <div class="hero__inner">
       <h1>Kuduz Antikor Titre Testi Sonuç Raporu Doğrulama</h1>
@@ -19,9 +23,7 @@
   <main class="card">
     <form id="verifyForm" class="form">
       <div class="form__row">
-        <label for="protocol" class="form__label">
-          Protokol Numarası ( Protocol number ):
-        </label>
+        <label for="protocol" class="form__label">Protokol Numarası ( Protocol number ):</label>
         <input
           id="protocol"
           name="protocol"
@@ -34,9 +36,7 @@
       </div>
 
       <div class="form__row">
-        <label for="chip" class="form__label">
-          Çip No ( Chip number ):
-        </label>
+        <label for="chip" class="form__label">Çip No ( Chip number ):</label>
         <input
           id="chip"
           name="chip"
@@ -54,13 +54,9 @@
     </form>
   </main>
 
-  <!-- PDF viewer area -->
+  <!-- PDF viewer -->
   <section class="viewer">
-    <!--
-      IMPORTANT:
-      Put your PDF at: assets/document.pdf
-      If your file has a different name, update the SRC in app.js
-    -->
+    <!-- The src is set by JS -->
     <iframe
       id="pdfViewer"
       title="ENS_SampleRabiesReport_Verify"
@@ -68,7 +64,5 @@
       loading="lazy"
     ></iframe>
   </section>
-
-  <script src="assets/js/app.js"></script>
 </body>
 </html>
