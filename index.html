@@ -74,10 +74,11 @@
     </footer>
   </main>
 
-  window.addEventListener('DOMContentLoaded', function(){
+<script>
+window.addEventListener('DOMContentLoaded', function(){
   document.getElementById('searchForm').dispatchEvent(new Event('submit'));
 });
-
+</script>
 
   <!-- Simple in-page "database": key is "PROTOCOL|CHIP", value is the PDF URL (relative or absolute) -->
 <script id="db" type="application/json">
@@ -143,6 +144,7 @@
   </script>
 </body>
 </html>
+
 
 
 
