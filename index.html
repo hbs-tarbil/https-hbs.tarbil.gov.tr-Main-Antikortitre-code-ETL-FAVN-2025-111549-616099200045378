@@ -19,8 +19,8 @@
     @media (min-width: 720px) { .row { grid-template-columns: 1fr 1fr; } }
 
     label { display:block; font-weight: 600; margin-bottom: 6px; }
-    input[type="text"] { width:100%; padding:12px 14px; border:1px solid #e5e7eb; border-radius: 12px; font-size: 16px; outline: none; }
-    input[type="text"]:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(14,165,166,.18); }
+    <input id="protocol" name="protocol" type="text" value="ETL/FAVN/2025/111549" required />
+<input id="chip" name="chip" type="text" value="616099200045378" required />
 
     .actions { display:flex; gap:10px; align-items:center; flex-wrap: wrap; margin-top: 12px; }
     button { background: var(--accent); color:#fff; border:0; padding:12px 18px; border-radius: 12px; font-weight: 700; cursor:pointer; }
@@ -73,6 +73,11 @@
       Built for GitHub Pages · Replace the mapping below with your own report entries
     </footer>
   </main>
+
+  window.addEventListener('DOMContentLoaded', function(){
+  document.getElementById('searchForm').dispatchEvent(new Event('submit'));
+});
+
 
   <!-- Simple in-page "database": key is "PROTOCOL|CHIP", value is the PDF URL (relative or absolute) -->
 <script id="db" type="application/json">
@@ -138,6 +143,7 @@
   </script>
 </body>
 </html>
+
 
 
 
