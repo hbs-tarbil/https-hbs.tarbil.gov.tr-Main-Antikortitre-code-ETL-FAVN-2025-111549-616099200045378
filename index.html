@@ -48,12 +48,12 @@
         <div class="row">
           <div>
             <label for="protocol">Protocol Number</label>
-            <!-- القيم الافتراضية هنا -->
+            <!-- default value -->
             <input id="protocol" name="protocol" type="text" value="ETL/FAVN/2025/111549" required />
           </div>
           <div>
             <label for="chip">Chip Number</label>
-            <!-- القيم الافتراضية هنا -->
+            <!-- default value -->
             <input id="chip" name="chip" type="text" value="616099200045378" required />
           </div>
         </div>
@@ -75,7 +75,7 @@
     </footer>
   </main>
 
-  <!-- خريطة الربط: PROTOCOL|CHIP → مسار الـPDF -->
+  <!-- mapping: PROTOCOL|CHIP -> PDF path -->
   <script id="db" type="application/json">
   {
     "ETL/FAVN/2025/111549|616099200045378": "pdfs/sample.pdf"
@@ -90,7 +90,7 @@
     const usePdfjs= document.getElementById('usePdfjs');
     const db      = JSON.parse(document.getElementById('db').textContent.trim());
 
-    // تعبئة من باراميترات الرابط (إن وُجدت)
+    // read from URL params if present
     const params = new URL(location.href).searchParams;
     if (params.has('protocol')) document.getElementById('protocol').value = params.get('protocol');
     if (params.has('chip'))     document.getElementById('chip').value     = params.get('chip');
@@ -113,7 +113,6 @@
       viewer.hidden = false; viewer.innerHTML = '';
 
       if (usePdfjs.checked) {
-        // استخدام عارض PDF.js المستضاف
         const encoded = encodeURIComponent(pdfUrl);
         const src = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encoded}#zoom=page-width`;
         const iframe = document.createElement('iframe');
@@ -123,10 +122,9 @@
         iframe.referrerPolicy = 'no-referrer';
         viewer.appendChild(iframe);
       } else {
-        // المعاينة المدمجة في المتصفح
         const iframe = document.createElement('iframe');
         iframe.title = 'PDF preview';
-        iframe.src = pdfUrl; // يُفضّل مسار نسبي (نفس الأصل)
+        iframe.src = pdfUrl;
         iframe.loading = 'lazy';
         viewer.appendChild(iframe);
       }
@@ -134,7 +132,7 @@
       status.textContent = 'Report loaded.';
     });
 
-    // تشغيل البحث تلقائيًا عند فتح الصفحة
+    // auto-submit on first load
     window.addEventListener('DOMContentLoaded', function(){
       form.dispatchEvent(new Event('submit'));
     });
