@@ -19,8 +19,8 @@
     @media (min-width: 720px) { .row { grid-template-columns: 1fr 1fr; } }
 
     label { display:block; font-weight: 600; margin-bottom: 6px; }
-    <input id="protocol" name="protocol" type="text" value="ETL/FAVN/2025/111549" required />
-<input id="chip" name="chip" type="text" value="616099200045378" required />
+    input[type="text"] { width:100%; padding:12px 14px; border:1px solid #e5e7eb; border-radius: 12px; font-size: 16px; outline: none; }
+    input[type="text"]:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(14,165,166,.18); }
 
     .actions { display:flex; gap:10px; align-items:center; flex-wrap: wrap; margin-top: 12px; }
     button { background: var(--accent); color:#fff; border:0; padding:12px 18px; border-radius: 12px; font-weight: 700; cursor:pointer; }
@@ -34,7 +34,6 @@
     iframe, object, embed { width:100%; height:100%; border:0; }
 
     footer { text-align:center; color: var(--muted); font-size: .85rem; margin: 22px 0; }
-    .brand { font-weight: 700; color:#fff; }
   </style>
 </head>
 <body>
@@ -49,11 +48,13 @@
         <div class="row">
           <div>
             <label for="protocol">Protocol Number</label>
-            <input id="protocol" name="protocol" type="text" placeholder="e.g. ETL/FAVN/2025/111549" required />
+            <!-- القيم الافتراضية هنا -->
+            <input id="protocol" name="protocol" type="text" value="ETL/FAVN/2025/111549" required />
           </div>
           <div>
             <label for="chip">Chip Number</label>
-            <input id="chip" name="chip" type="text" placeholder="e.g. 616099200045378" required />
+            <!-- القيم الافتراضية هنا -->
+            <input id="chip" name="chip" type="text" value="616099200045378" required />
           </div>
         </div>
         <div class="actions">
@@ -74,20 +75,12 @@
     </footer>
   </main>
 
-<script>
-window.addEventListener('DOMContentLoaded', function(){
-  document.getElementById('searchForm').dispatchEvent(new Event('submit'));
-});
-</script>
-
-  <!-- Simple in-page "database": key is "PROTOCOL|CHIP", value is the PDF URL (relative or absolute) -->
-<script id="db" type="application/json">
-{
-  "ETL/FAVN/2025/111549|616099200045378": "pdfs/sample.pdf"
-}
-</script>
-
-
+  <!-- خريطة الربط: PROTOCOL|CHIP → مسار الـPDF -->
+  <script id="db" type="application/json">
+  {
+    "ETL/FAVN/2025/111549|616099200045378": "pdfs/sample.pdf"
+  }
+  </script>
 
   <script>
   (function(){
@@ -97,7 +90,7 @@ window.addEventListener('DOMContentLoaded', function(){
     const usePdfjs= document.getElementById('usePdfjs');
     const db      = JSON.parse(document.getElementById('db').textContent.trim());
 
-    // Prefill inputs from URL parameters (?protocol=...&chip=...&pdfjs=1)
+    // تعبئة من باراميترات الرابط (إن وُجدت)
     const params = new URL(location.href).searchParams;
     if (params.has('protocol')) document.getElementById('protocol').value = params.get('protocol');
     if (params.has('chip'))     document.getElementById('chip').value     = params.get('chip');
@@ -120,7 +113,7 @@ window.addEventListener('DOMContentLoaded', function(){
       viewer.hidden = false; viewer.innerHTML = '';
 
       if (usePdfjs.checked) {
-        // Use the hosted PDF.js viewer. Works best when the PDF allows cross-origin access.
+        // استخدام عارض PDF.js المستضاف
         const encoded = encodeURIComponent(pdfUrl);
         const src = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encoded}#zoom=page-width`;
         const iframe = document.createElement('iframe');
@@ -130,23 +123,22 @@ window.addEventListener('DOMContentLoaded', function(){
         iframe.referrerPolicy = 'no-referrer';
         viewer.appendChild(iframe);
       } else {
-        // Native browser PDF preview (or built-in PDF plugin)
+        // المعاينة المدمجة في المتصفح
         const iframe = document.createElement('iframe');
         iframe.title = 'PDF preview';
-        iframe.src = pdfUrl; // relative URL recommended (same-origin)
+        iframe.src = pdfUrl; // يُفضّل مسار نسبي (نفس الأصل)
         iframe.loading = 'lazy';
         viewer.appendChild(iframe);
       }
 
       status.textContent = 'Report loaded.';
     });
+
+    // تشغيل البحث تلقائيًا عند فتح الصفحة
+    window.addEventListener('DOMContentLoaded', function(){
+      form.dispatchEvent(new Event('submit'));
+    });
   })();
   </script>
 </body>
 </html>
-
-
-
-
-
-
